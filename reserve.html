@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Star Wars - Express</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+  <div class="container">
+    <div class="jumbotron text-center">
+       <h1><span class="glyphicon glyphicon-fire"></span> Hot Restaurant</h1>
+      <h3>Make your reservation</h3>
+      <hr>
+       <a href="/tables"><button type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-list-alt"></span> View Table</button></a>
+        <a href="/"><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-home"></span></button></a>
+    </div>
+   	<div class="row">
+			<div class="col-lg-12">
+
+				<!-- Reservation Page -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">Table Reservation</h4>
+					</div>
+					<div class="panel-body">
+
+						<form role="form">
+
+							<div class="form-group">
+								<label for="">Name</label>
+								<input type="text" class="form-control" id="name">
+							</div>
+
+							<div class="form-group">
+								<label for="">Phone Number</label>
+								<input type="text" class="form-control" id="phone">
+							</div>
+
+							<div class="form-group">
+								<label for="">Email</label>
+								<input type="text" class="form-control" id="email">
+							</div>
+
+							<div class="form-group">
+								<label for="">Unique ID</label>
+								<input type="text" class="form-control" id="ID">
+							</div>
+
+							<button type="submit"  id="add-btn" class="btn btn-primary submit">Submit</button>
+						</form>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+ 
+    <a href="/api/tables">API Table Link</a>
+    <span>|</span>
+    <a href="/api/waitlist">API Wait List</a>
+    <br>
+  </div>
+
+  <script type="text/javascript">
+    // Question: What does this code do?
+    $("#add-btn").on("click", function(event) {
+      event.preventDefault();
+      var newReservation = {
+        name: $("#name").val().trim(),
+        phoneNumber: $("#phone").val().trim(),
+        email: $("#email").val().trim(),
+        id: $("#ID").val().trim()
+      };
+
+      // Question: What does this code do??
+      $.post("/api/reserve", newReservation)
+      .done(function(data) {
+        console.log(data);
+        alert("Reserving table...");
+
+      });
+      location.reload();
+      
+      
+
+    });
+  </script>
+
+</body>
+</html>
