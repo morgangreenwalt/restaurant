@@ -1,4 +1,4 @@
-Restaurant App
+Restaurant Scheduler
 -------
 
 An interactive web application that allows you to book reservations at restuarants. 
